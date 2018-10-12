@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Products</title>
+    <title th:text="#{products.title}">Products</title>
 </head>
 <body>
     <table align="center">
@@ -12,22 +12,22 @@
                 <td style="min-width: 600px" align="left">
                     <table>
                         <tr>
-                            <td th:text="'name: '+${product.name}">name content</td>
+                            <td th:text="#{product.name}+${product.name}">name content</td>
                         </tr>
                         <tr>
-                            <td th:text="'price: '+${product.price}+' PLN'">price content</td>
+                            <td th:text="#{product.price}+${product.price}+' PLN'">price content</td>
                         </tr>
                         <tr>
-                            <td th:text="'description: '+${product.description}">description content</td>
+                            <td th:text="#{product.description}+${product.description}">description content</td>
                         </tr>
                         <tr>
-                            <td th:text="'manufacturer: '+${product.manufacturer}">manufacturer content</td>
+                            <td th:text="#{product.manufacturer}+${product.manufacturer}">manufacturer content</td>
                         </tr>
                         <tr>
-                            <td th:text="'category: '+${product.category}">category content</td>
+                            <td th:text="#{product.catergory}+${product.category}">category content</td>
                         </tr>
                         <tr>
-                            <td th:text="'units in stock: '+${product.unitsInStock}">units in stock content</td>
+                            <td th:text="#{product.unitsInStock}+${product.unitsInStock}">units in stock content</td>
                         </tr>
                     </table>
 

@@ -1,42 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add product</title>
+    <title th:text="#{add.product.title}">Add product</title>
 </head>
 <body>
     <div align="center">
         <form method="post" enctype="multipart/form-data" action="/robowebstore/addproduct">
-            <div style="margin: 20px;">
-                <label>Name</label>
+            <div style="margin: 20px">
+                <label th:text="#{product.name}">Name</label>
                 <input id="name" type="text" name="name"/>
             </div>
-            <div style="margin: 20px;">
-                <label>description</label>
-                <input id="description" type="text" name="description" style="min-height: 200px"/>
+            <div style="margin: 20px">
+                <label th:text="#{product.description}">description content</label>
+                <input id="description" type="text" name="description" style="height: 100px; width: 200px"/>
             </div>
-            <div style="margin: 20px;">
-                <label>manufacturer</label>
+            <div style="margin: 20px">
+                <label th:text="#{product.manufacturer}">manufacturer</label>
                 <input id="manufacturer" type="text" name="manufacturer"/>
             </div>
             <div style="margin: 20px;">
-                <label>category</label>
+                <label th:text="#{product.catergory}">category</label>
                 <input id="category" type="text" name="category"/>
             </div>
             <div style="margin: 20px;">
-                <label>price</label>
+                <label th:text="#{product.price}">price</label>
                 <input id="price" type="number" step="any" min="0" name="price"/>
             </div>
             <div style="margin: 20px;">
-                <label>units in stock</label>
+                <label th:text="#{product.unitsInStock}">units in stock</label>
                 <input id="unitsInStock" type="number" min="0" name="unitsInStock"/>
             </div>
             <div style="margin: 20px;">
-                <label>Picture</label>
+                <label th:text="#{upload.product.image}">Picture</label>
                 <input id="multipartFile" type="file" name="multipartFile">
             </div>
             <div style="margin: 20px;">
-                <input id="submit" type="submit" value="submit">
+                <input th:value="#{submit}" id="submit" type="submit" value="submit">
             </div>
         </form>
     </div>
