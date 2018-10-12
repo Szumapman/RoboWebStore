@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+    <table align="center">
+        <th:block th:each="product : ${__${T(com.endlesspowerskills.robowebstore.util.AttributeNames).PRODUCTS}__}">
+            <tr style="min-height: 200px;">
+                <td style="max-width: 200px"><img th:src="@{'data:image/jpeg;base64,'+${product.image}}" style="max-width: 100px"></td>
+                <td style="min-width: 600px" align="left">
+                    <table>
+                        <tr>
+                            <td th:text="'name: '+${product.name}">name content</td>
+                        </tr>
+                        <tr>
+                            <td th:text="'price: '+${product.price}+' PLN'">price content</td>
+                        </tr>
+                        <tr>
+                            <td th:text="'description: '+${product.description}">description content</td>
+                        </tr>
+                        <tr>
+                            <td th:text="'manufacturer: '+${product.manufacturer}">manufacturer content</td>
+                        </tr>
+                        <tr>
+                            <td th:text="'category: '+${product.category}">category content</td>
+                        </tr>
+                        <tr>
+                            <td th:text="'units in stock: '+${product.unitsInStock}">units in stock content</td>
+                        </tr>
+                    </table>
+
+                </td>
+
+            </tr>
+
+        </th:block>
+
+    </table>
+
+</body>
+</html>
