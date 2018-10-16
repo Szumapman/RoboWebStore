@@ -1,6 +1,5 @@
 package com.endlesspowerskills.robowebstore.config;
 
-import com.endlesspowerskills.robowebstore.entity.Admin;
 import com.endlesspowerskills.robowebstore.repository.AdminRepository;
 import com.endlesspowerskills.robowebstore.util.PageMappings;
 import com.endlesspowerskills.robowebstore.util.RoleNames;
@@ -33,7 +32,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(username ->
                 adminRepository.getAdminByUsername(username)).passwordEncoder(passwordEncoder());
-        Iterable<Admin> admins = adminRepository.findAll();
     }
 
     @Bean
