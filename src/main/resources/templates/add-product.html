@@ -6,7 +6,7 @@
 </head>
 <body>
     <div align="center">
-        <form method="post" enctype="multipart/form-data" action="/robowebstore/addproduct">
+        <form class="forn-signin" method="post" enctype="multipart/form-data" action="#" th:action="@{/robowebstore/addproduct}">
             <div style="margin: 20px">
                 <label th:text="#{product.name}">Name</label>
                 <input id="name" type="text" name="name"/>
@@ -40,6 +40,15 @@
             </div>
         </form>
     </div>
+    <!--<div>-->
+        <!--<th:block>Logged in as <span sec:authentication="name" /> with authorities: <span-->
+                <!--sec:authentication="authorities" />-->
+            <!--<form id="logout" th:action="@{/logout}" method="post">-->
+                <!--&lt;!&ndash;<input  id="logout" type="submit" value="Sign Out" />&ndash;&gt;-->
+            <!--</form>-->
+            <!--<a href="#" onclick="document.getElementById('logout').submit()">Sign Out</a>-->
+        <!--</th:block>-->
+    <!--</div>-->
 
 </body>
 </html>

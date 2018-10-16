@@ -4,6 +4,7 @@ public final class ViewNames {
     // -- constants
     public static final String PRODUCTS = "products";
     public static final String ADD_PRODUCT = "add-product";
+    public static final String LOGIN = "login";
 
     // -- constructors
     private ViewNames(){}

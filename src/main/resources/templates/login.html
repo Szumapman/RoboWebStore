@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{login.title}">Login title</title>
+</head>
+<body>
+<div th:if="${__${T(com.endlesspowerskills.robowebstore.util.AttributeNames).LOGIN_ERROR}__}" th:text="#{login.invalid.data}">
+    Invalid username and password.
+</div>
+<div th:if="${param.logout}" th:text="#{login.logout}">
+    You have been logged out.
+</div>
+<form th:action="@{/robowebstore/login}" method="post">
+    <div>
+        <label th:text="#{login.id}"> User Name : </label>
+        <input type="text" name="username"/>
+    </div>
+    <div>
+        <label th:text="#{login.password}"> Password: </label>
+        <input type="password" name="password"/>
+    </div>
+    <div><input th:value="#{sign.in}" type="submit" value="Sign In"/></div>
+</form>
+</body>
+</html>

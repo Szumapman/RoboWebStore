@@ -1,9 +1,6 @@
-package com.endlesspowerskills.robowebstore.domain;
+package com.endlesspowerskills.robowebstore.entity;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,6 +29,8 @@ public class Product implements Serializable {
     private String manufacturer;
     private String category;
     private int unitsInStock;
+
+    @ToString.Exclude
     private String image;
 
 }
