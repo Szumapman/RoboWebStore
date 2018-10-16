@@ -7,7 +7,6 @@ import com.endlesspowerskills.robowebstore.util.PageMappings;
 import com.endlesspowerskills.robowebstore.util.ViewNames;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Base64Utils;
@@ -42,11 +41,9 @@ public class ProductController {
     public String addProduct(Model model){
         Product product = new Product();
         model.addAttribute(AttributeNames.NEW_PRODUCT, product);
-        log.info("new product created. ");
         return ViewNames.ADD_PRODUCT;
     }
 
-    @Secured("ROLE_ADMIN")
     @PostMapping(PageMappings.ADD_PRODUCT)
     public String processAddProduct(@ModelAttribute(AttributeNames.NEW_PRODUCT) Product newProduct, @RequestParam String name,
                                     @RequestParam double price, @RequestParam String description, @RequestParam String manufacturer,
@@ -63,7 +60,6 @@ public class ProductController {
             log.debug("Encode to string exception: {}", e.getMessage());
             e.printStackTrace();
         }
-        log.info("new product: {}", newProduct);
         productRepository.save(newProduct);
         return ViewNames.ADD_PRODUCT;
     }
