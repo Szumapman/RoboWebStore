@@ -40,15 +40,13 @@
             </div>
         </form>
     </div>
-    <!--<div>-->
-        <!--<th:block>Logged in as <span sec:authentication="name" /> with authorities: <span-->
-                <!--sec:authentication="authorities" />-->
-            <!--<form id="logout" th:action="@{/logout}" method="post">-->
-                <!--&lt;!&ndash;<input  id="logout" type="submit" value="Sign Out" />&ndash;&gt;-->
-            <!--</form>-->
-            <!--<a href="#" onclick="document.getElementById('logout').submit()">Sign Out</a>-->
-        <!--</th:block>-->
-    <!--</div>-->
+    <div align="center">
+        <span th:text="#{logged.name}">Logged in as </span><span sec:authentication="name" />
+        <span th:text="#{authorites}"> with authorities: </span><span sec:authentication="authorities" />
+        <form id="logout" th:action="@{/robowebstore/logout}" method="post">
+            <input  th:value="#{sign.out}" type="submit" value="Sign Out" />
+        </form>
+    </div>
 
 </body>
 </html>

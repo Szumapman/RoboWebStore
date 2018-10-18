@@ -4,7 +4,7 @@
     <title th:text="#{login.title}">Login title</title>
 </head>
 <body>
-<div th:if="${__${T(com.endlesspowerskills.robowebstore.util.AttributeNames).LOGIN_ERROR}__}" th:text="#{login.invalid.data}">
+<div th:if="${param.error}" th:text="#{login.invalid.data}">
     Invalid username and password.
 </div>
 <div th:if="${param.logout}" th:text="#{login.logout}">

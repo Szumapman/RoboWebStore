@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:spring="http://www.springframework.org/tags">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title th:text="#{products.title}">Products</title>
 </head>
 <body>
     <table align="center">
-        <th:block th:each="product : ${__${T(com.endlesspowerskills.robowebstore.util.AttributeNames).PRODUCTS}__}">
+
             <tr style="min-height: 200px;">
-                <td style="max-width: 200px"><img th:src="@{'data:image/jpeg;base64,'+${product.image}}" style="max-width: 100px"></td>
+                <td style="max-width: 200px"><img th:src="@{'data:image/jpeg;base64,'+${product.image}}" style="max-width: 200px"></td>
                 <td style="min-width: 600px" align="left">
                     <table>
                         <tr>
@@ -31,7 +31,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <a th:href="@{/robowebstore/products/product(id=${product.id})}">Details</a>
+                                <a th:href="@{/robowebstore/products}">Products</a>
 
                             </td>
                         </tr>
@@ -41,7 +41,6 @@
 
             </tr>
 
-        </th:block>
 
     </table>
 
