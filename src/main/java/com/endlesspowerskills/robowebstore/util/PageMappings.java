@@ -11,8 +11,7 @@ public final class PageMappings {
     public static final String PRODUCT = "/product";
     public static final String FILTER = "/filter";
     public static final String ALL = "/**";
-
-
+    public static final String DOWNLOAD = "/download";
 
 
     // -- constructors

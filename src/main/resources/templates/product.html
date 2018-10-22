@@ -31,6 +31,11 @@
                         </tr>
                         <tr>
                             <td>
+                                <a th:href="@{|/robowebstore/download/ + ${product.id}|}" th:if="${product.manual != null}"  >manual content</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <a th:href="@{/robowebstore/products}">Products</a>
 
                             </td>

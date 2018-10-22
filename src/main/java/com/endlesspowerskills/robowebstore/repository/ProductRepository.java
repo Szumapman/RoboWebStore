@@ -9,5 +9,4 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
     List<Product> findAllByCategory(String category);
     List<Product> findAllByManufacturer(String manufacturer);
     List<Product> findProductsByPriceIsBetween(double low, double high);
-
 }

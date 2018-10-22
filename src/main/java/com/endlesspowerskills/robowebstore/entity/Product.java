@@ -33,4 +33,11 @@ public class Product implements Serializable {
     @ToString.Exclude
     private String image;
 
+    @ToString.Exclude
+    private byte[] manual;
+    @ToString.Exclude
+    private String fileType;
+    @ToString.Exclude
+    private String fileName;
+
 }

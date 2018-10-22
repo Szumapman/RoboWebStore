@@ -6,7 +6,7 @@
 </head>
 <body>
     <div align="center">
-        <form class="forn-signin" method="post" enctype="multipart/form-data" action="#" th:action="@{/robowebstore/addproduct}">
+        <form method="post" enctype="multipart/form-data" action="#" th:action="@{/robowebstore/addproduct}" th:object="${newProduct}">
             <div style="margin: 20px">
                 <label th:text="#{product.name}">Name</label>
                 <input id="name" type="text" name="name"/>
@@ -33,7 +33,11 @@
             </div>
             <div style="margin: 20px;">
                 <label th:text="#{upload.product.image}">Picture</label>
-                <input id="multipartFile" type="file" name="multipartFile">
+                <input id="multipartFileImage" type="file" name="multipartFileImage">
+            </div>
+            <div style="margin: 20px;">
+                <label th:text="#{upload.product.manual}">Picture</label>
+                <input id="multipartFileManual" type="file" name="multipartFileManual">
             </div>
             <div style="margin: 20px;">
                 <input th:value="#{submit}" id="submit" type="submit" value="submit">
