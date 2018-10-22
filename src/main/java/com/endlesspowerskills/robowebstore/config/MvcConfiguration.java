@@ -1,10 +1,12 @@
 package com.endlesspowerskills.robowebstore.config;
 
 import com.endlesspowerskills.robowebstore.interceptor.AuditingInterceptor;
+import com.endlesspowerskills.robowebstore.interceptor.PromoCodeInterceptor;
 import com.endlesspowerskills.robowebstore.util.PageMappings;
 import com.endlesspowerskills.robowebstore.util.ViewNames;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
@@ -39,5 +41,11 @@ public class MvcConfiguration implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LocaleChangeInterceptor());
         registry.addInterceptor(new AuditingInterceptor());
+
+        PromoCodeInterceptor promoCodeInterceptor = new PromoCodeInterceptor();
+        promoCodeInterceptor.setPromoCode("pr0m0");
+        // Dla uproszczenia przekierowanie do standardowej strony produktów
+        promoCodeInterceptor.setOfferRedirect(PageMappings.ROBOWEBSTORE + PageMappings.PRODUCTS);
+        registry.addInterceptor(promoCodeInterceptor);
     }
 }
