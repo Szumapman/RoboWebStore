@@ -1,6 +1,6 @@
 package com.endlesspowerskills.robowebstore.interceptor;
 
-import com.endlesspowerskills.robowebstore.util.FieldNames;
+import com.endlesspowerskills.robowebstore.util.ParameterValues;
 import com.endlesspowerskills.robowebstore.util.PageMappings;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -24,7 +24,7 @@ public class AuditingInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if(request.getRequestURI().endsWith(PageMappings.ROBOWEBSTORE + PageMappings.ADD_PRODUCT) && request.getMethod().equals("POST")){
             admin = request.getRemoteUser();
-            productName = request.getParameterValues(FieldNames.PRODUCT_NAME)[0];
+            productName = request.getParameterValues(ParameterValues.PRODUCT_NAME)[0];
 
             log.info("Collection request parameter names: {}",request.getParameterMap().keySet());
         }
@@ -34,7 +34,7 @@ public class AuditingInterceptor extends HandlerInterceptorAdapter {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         if(request.getRequestURI().endsWith(PageMappings.ROBOWEBSTORE + PageMappings.ADD_PRODUCT)&& request.getMethod().equals("POST")
-                && response.getStatus() == 200){
+                && response.getStatus() == 302){
             log.info("New product name: {}, added by: {}, added time: {}", productName, admin, getCurrentTime());
         }
     }

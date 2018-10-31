@@ -3,11 +3,10 @@ package com.endlesspowerskills.robowebstore.controller;
 import com.endlesspowerskills.robowebstore.entity.Product;
 import com.endlesspowerskills.robowebstore.service.ProductService;
 import com.endlesspowerskills.robowebstore.util.AttributeNames;
-import com.endlesspowerskills.robowebstore.util.FieldNames;
+import com.endlesspowerskills.robowebstore.util.ParameterValues;
 import com.endlesspowerskills.robowebstore.util.PageMappings;
 import com.endlesspowerskills.robowebstore.util.ViewNames;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -23,6 +22,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -75,18 +75,19 @@ public class ProductController {
         return ViewNames.PRODUCTS;
     }
 
-    @GetMapping(PageMappings.ADD_PRODUCT)
-    public String addProduct(Model model) {
-        Product product = new Product();
-        model.addAttribute(AttributeNames.NEW_PRODUCT, product);
+    @GetMapping( PageMappings.ADD_PRODUCT)
+    public String addProduct(@ModelAttribute(AttributeNames.NEW_PRODUCT) Product newProduct) {
         return ViewNames.ADD_PRODUCT;
     }
 
 
     @PostMapping(PageMappings.ADD_PRODUCT)
-    public String processAddProduct(@ModelAttribute(AttributeNames.NEW_PRODUCT) Product newProduct,
-                                    @RequestParam MultipartFile multipartFileImage, @RequestParam MultipartFile multipartFileManual,
-                                    BindingResult result) {
+    public String processAddProduct(@ModelAttribute(AttributeNames.NEW_PRODUCT) @Valid Product newProduct, BindingResult result,
+                                    @RequestParam MultipartFile multipartFileImage, @RequestParam MultipartFile multipartFileManual) {
+        // validation
+        if(result.hasErrors()){
+            return ViewNames.ADD_PRODUCT;
+        }
         // Adding image to database
         try {
             if(multipartFileImage != null && !multipartFileImage.isEmpty()){
@@ -112,14 +113,14 @@ public class ProductController {
 
         productService.save(newProduct);
         log.info("New product id: {}", newProduct.getId());
-        return ViewNames.ADD_PRODUCT;
+        return "redirect:" + PageMappings.ROBOWEBSTORE + PageMappings.ADD_PRODUCT;
     }
 
     @InitBinder
     public void initialiseBinder(WebDataBinder binder){
-        binder.setAllowedFields(FieldNames.PRODUCT_NAME, FieldNames.PRODUCT_PRICE, FieldNames.PRODUCT_DESCRIPTION,
-                FieldNames.PRODUCT_MANUFACTURER, FieldNames.PRODUCT_CATEGORY, FieldNames.PRODUCT_UNITS_IN_STOCK,
-                FieldNames.PRODUCT_MULTIPART_FILE_IMAGE, FieldNames.PRODUCT_MULTIPART_FILE_MANUAL);
+        binder.setAllowedFields(ParameterValues.PRODUCT_NAME, ParameterValues.PRODUCT_PRICE, ParameterValues.PRODUCT_DESCRIPTION,
+                ParameterValues.PRODUCT_MANUFACTURER, ParameterValues.PRODUCT_CATEGORY, ParameterValues.PRODUCT_UNITS_IN_STOCK,
+                ParameterValues.PRODUCT_MULTIPART_FILE_IMAGE, ParameterValues.PRODUCT_MULTIPART_FILE_MANUAL);
     }
 
     @GetMapping(PageMappings.DOWNLOAD + "/{id}")
@@ -129,5 +130,10 @@ public class ProductController {
         return ResponseEntity.ok().contentType(MediaType.parseMediaType(product.getFileType()))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + product.getFileName() +"\"")
                 .body(new ByteArrayResource(product.getManual()));
+    }
+
+    @RequestMapping(PageMappings.INVALID_PROMO_CODE)
+    public String invalidPromoCode(){
+        return ViewNames.INVALID_PROMO_CODE;
     }
 }

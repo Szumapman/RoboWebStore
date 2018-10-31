@@ -1,6 +1,6 @@
 package com.endlesspowerskills.robowebstore.util;
 
-public final class FieldNames {
+public final class ParameterValues {
     // - constants
     public static final String PRODUCT_NAME = "name";
     public static final String PRODUCT_PRICE = "price";
@@ -10,7 +10,8 @@ public final class FieldNames {
     public static final String PRODUCT_UNITS_IN_STOCK = "unitsInStock";
     public static final String PRODUCT_MULTIPART_FILE_IMAGE = "multipartFileImage";
     public static final String PRODUCT_MULTIPART_FILE_MANUAL = "multipartFileManual";
+    public static final String PROMO = "promo";
 
     // -- constructors
-    private FieldNames(){}
+    private ParameterValues(){}
 }

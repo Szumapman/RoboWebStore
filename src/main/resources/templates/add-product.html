@@ -6,10 +6,14 @@
 </head>
 <body>
     <div align="center">
-        <form method="post" enctype="multipart/form-data" action="#" th:action="@{/robowebstore/addproduct}" th:object="${newProduct}">
+        <form enctype="multipart/form-data" action="#" th:action="@{/robowebstore/addproduct}" th:object="${newProduct}" method="post">
             <div style="margin: 20px">
                 <label th:text="#{product.name}">Name</label>
-                <input id="name" type="text" name="name"/>
+                <input id="name" type="text" name="name" th:field="*{name}" />
+                <ul>
+                    <li th:errors="*{name}" th:text="#{product.name.notNull}" style="color: red"/>
+                </ul>
+                <!--<label th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</label>-->
             </div>
             <div style="margin: 20px">
                 <label th:text="#{product.description}">description content</label>
@@ -25,11 +29,14 @@
             </div>
             <div style="margin: 20px;">
                 <label th:text="#{product.price}">price</label>
-                <input id="price" type="number" step="any" min="0" name="price"/>
+                <input id="price" type="number" step="any" min="0.01" name="price" th:field="*{price}"/>
+                <ul>
+                    <li th:errors="*{price}" th:text="#{product.price.priceValidation}" style="color: red"/>
+                </ul>
             </div>
             <div style="margin: 20px;">
                 <label th:text="#{product.unitsInStock}">units in stock</label>
-                <input id="unitsInStock" type="number" min="0" name="unitsInStock"/>
+                <input id="unitsInStock" type="number" min="1" name="unitsInStock"/>
             </div>
             <div style="margin: 20px;">
                 <label th:text="#{upload.product.image}">Picture</label>

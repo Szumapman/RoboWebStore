@@ -12,6 +12,9 @@ public final class PageMappings {
     public static final String FILTER = "/filter";
     public static final String ALL = "/**";
     public static final String DOWNLOAD = "/download";
+    public static final String SPECIAL_OFFER = "/specialOffer";
+    public static final String INVALID_PROMO_CODE = "/invalidPromoCode";
+    public static final String ADD_PRODUCT_ERROR = "/error";
 
 
     // -- constructors

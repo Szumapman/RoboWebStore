@@ -45,7 +45,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers(PageMappings.ROBOWEBSTORE + PageMappings.PRODUCTS, PageMappings.ROBOWEBSTORE + PageMappings.PRODUCTS + PageMappings.ALL, PageMappings.ROBOWEBSTORE + PageMappings.LOGIN).permitAll()
+                .antMatchers(PageMappings.ROBOWEBSTORE + PageMappings.PRODUCTS,
+                        PageMappings.ROBOWEBSTORE + PageMappings.PRODUCTS + PageMappings.ALL,
+                        PageMappings.ROBOWEBSTORE + PageMappings.LOGIN,
+                        PageMappings.ROBOWEBSTORE+PageMappings.SPECIAL_OFFER,
+                        PageMappings.ROBOWEBSTORE+PageMappings.INVALID_PROMO_CODE,
+                        "/error")
+                .permitAll()
                 .antMatchers(PageMappings.ROBOWEBSTORE + PageMappings.ADD_PRODUCT).hasRole(RoleNames.ADMIN)
                 .and()
                 .formLogin()
