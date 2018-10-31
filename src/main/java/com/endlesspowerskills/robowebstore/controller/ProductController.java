@@ -6,6 +6,8 @@ import com.endlesspowerskills.robowebstore.util.AttributeNames;
 import com.endlesspowerskills.robowebstore.util.ParameterValues;
 import com.endlesspowerskills.robowebstore.util.PageMappings;
 import com.endlesspowerskills.robowebstore.util.ViewNames;
+import com.endlesspowerskills.robowebstore.validator.ProductValidator;
+import com.endlesspowerskills.robowebstore.validator.ValuableUnitsInStockValidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -34,12 +36,15 @@ public class ProductController {
 
     // -- fields
     private final ProductService productService;
+    private final ProductValidator productValidator;
 
     // -- constructors
     @Autowired
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, ProductValidator productValidator) {
         this.productService = productService;
+        this.productValidator = productValidator;
     }
+
 
     // -- methods
     @GetMapping(PageMappings.PRODUCTS)
@@ -118,6 +123,7 @@ public class ProductController {
 
     @InitBinder
     public void initialiseBinder(WebDataBinder binder){
+        binder.setValidator(productValidator);
         binder.setAllowedFields(ParameterValues.PRODUCT_NAME, ParameterValues.PRODUCT_PRICE, ParameterValues.PRODUCT_DESCRIPTION,
                 ParameterValues.PRODUCT_MANUFACTURER, ParameterValues.PRODUCT_CATEGORY, ParameterValues.PRODUCT_UNITS_IN_STOCK,
                 ParameterValues.PRODUCT_MULTIPART_FILE_IMAGE, ParameterValues.PRODUCT_MULTIPART_FILE_MANUAL);

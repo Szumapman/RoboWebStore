@@ -25,6 +25,7 @@ public class MvcConfiguration implements WebMvcConfigurer {
         return new SessionLocaleResolver();
     }
 
+
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController(PageMappings.ROBOWEBSTORE + PageMappings.LOGIN).setViewName(ViewNames.LOGIN);

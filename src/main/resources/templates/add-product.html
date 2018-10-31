@@ -37,6 +37,9 @@
             <div style="margin: 20px;">
                 <label th:text="#{product.unitsInStock}">units in stock</label>
                 <input id="unitsInStock" type="number" min="1" name="unitsInStock"/>
+                <ul>
+                    <li th:errors="*{unitsInStock}" th:text="#{valuableUnitsInStockValidator.message}" style="color: red"/>
+                </ul>
             </div>
             <div style="margin: 20px;">
                 <label th:text="#{upload.product.image}">Picture</label>
